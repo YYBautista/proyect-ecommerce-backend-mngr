@@ -56,6 +56,20 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 		<!-- nuevas dependencias -->
 		<dependency>
 			<groupId>org.mapstruct</groupId>
@@ -88,8 +102,6 @@
 			<artifactId>rest-api-sdk</artifactId>
 			<version>1.14.0</version>
 		</dependency>
-
-
 	</dependencies>
 
 	<build>
@@ -147,5 +159,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

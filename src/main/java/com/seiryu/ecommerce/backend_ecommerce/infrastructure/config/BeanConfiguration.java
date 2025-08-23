@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import com.seiryu.ecommerce.backend_ecommerce.application.CategoryService;
 import com.seiryu.ecommerce.backend_ecommerce.application.OrderService;
 import com.seiryu.ecommerce.backend_ecommerce.application.ProductsService;
+import com.seiryu.ecommerce.backend_ecommerce.application.RegistrationService;
 import com.seiryu.ecommerce.backend_ecommerce.application.UploadFile;
 import com.seiryu.ecommerce.backend_ecommerce.application.UserService;
 import com.seiryu.ecommerce.backend_ecommerce.domain.port.ICategoryRepository;
@@ -42,6 +43,11 @@ public class BeanConfiguration {
     @Bean
     public UploadFile uploadFile() {
         return new UploadFile();
+    }
+
+    @Bean
+    public RegistrationService registrationService(IUserRepository iUserRepository) {
+        return new RegistrationService(iUserRepository);
     }
 
 }

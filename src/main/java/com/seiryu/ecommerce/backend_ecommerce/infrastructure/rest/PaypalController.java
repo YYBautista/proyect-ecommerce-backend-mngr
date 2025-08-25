@@ -16,7 +16,7 @@ import com.seiryu.ecommerce.backend_ecommerce.domain.model.UrlPaypalResponse;
 import com.seiryu.ecommerce.backend_ecommerce.infrastructure.service.PaypalService;
 
 @RestController
-@RequestMapping("api/v1/payments")
+@RequestMapping("/api/v1/payments")
 public class PaypalController {
 
     private final PaypalService paypalService;

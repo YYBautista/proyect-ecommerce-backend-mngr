@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.seiryu.ecommerce.backend_ecommerce.infrastructure.dto.JwtClient;
 import com.seiryu.ecommerce.backend_ecommerce.infrastructure.dto.UserDTO;
+import com.seiryu.ecommerce.backend_ecommerce.infrastructure.jwt.JwtGenerator;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,13 +23,15 @@ import lombok.extern.slf4j.Slf4j;
 public class LoginController {
 
     private final AuthenticationManager authenticationManager;
+    private final JwtGenerator jwtGenerator;
 
-    public LoginController(AuthenticationManager authenticationManager) {
+    public LoginController(AuthenticationManager authenticationManager, JwtGenerator jwtGenerator) {
         this.authenticationManager = authenticationManager;
+        this.jwtGenerator = jwtGenerator;
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<JwtClient> login(@RequestBody UserDTO userDTO) {
 
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(
@@ -38,7 +42,11 @@ public class LoginController {
         log.info("Role user: {}", SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
                 .findFirst().get().toString());
 
-        return new ResponseEntity<>("Login successful", HttpStatus.OK);
+        String token = jwtGenerator.generateToken(userDTO.username());
+
+        JwtClient jwtClient = new JwtClient(token);
+
+        return new ResponseEntity<>(jwtClient, HttpStatus.OK);
     }
 
 }

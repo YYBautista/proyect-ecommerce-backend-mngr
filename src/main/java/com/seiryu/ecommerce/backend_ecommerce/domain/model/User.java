@@ -39,6 +39,9 @@ public class User {
         this.dateUpdated = dateUpdated;
     }
 
+    /**
+     * @return String
+     */
     @Override
     public String toString() {
         return "User [id=" + id + ", userName=" + userName + ", firstName=" + firstName + ", lastName=" + lastName
